@@ -3,13 +3,15 @@ using Tinas_Torskfiléer_Backend.Models.Dto;
 
 namespace Tinas_Torskfiléer_Backend.Repository
 {
-    public interface IWarehouse
+    public interface IWarehouseRepo
     {
+        List<ProductDetailsDto> GetAllProducts();
+
         Product AddProductQuantity(ProductQuantityUpdateDto productDto);
 
         Product RemoveProductQuantity(ProductQuantityUpdateDto productDto);
 
-        Product AddProduct(ProductRequestDto productDto);
+        Product AddProduct(ProductDetailsDto productDto);
 
         Product RemoveProduct(int id);
     }

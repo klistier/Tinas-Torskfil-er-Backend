@@ -3,11 +3,18 @@ using Tinas_Torskfiléer_Backend.Models.Dto;
 
 namespace Tinas_Torskfiléer_Backend.Repository
 {
-    public class WarehouseRepo : IWarehouse
+    public class WarehouseRepo : IWarehouseRepo
     {
         private readonly ProductContext _db;
 
-        public Product AddProduct(ProductRequestDto productDto)
+        public List<ProductDetailsDto> GetAllProducts()
+        {
+            var productList = _db.TinasProducts.ToList();
+            var productListDto = productList.Select(product => new ProductDetailsDto(product.Id, product.Name, product.Description, product.Stock)).ToList();
+            return productListDto;
+        }
+
+        public Product AddProduct(ProductDetailsDto productDto)
         {
             Product newProduct = new(productDto.name, productDto.description, productDto.stock);
             _db.Add(newProduct);

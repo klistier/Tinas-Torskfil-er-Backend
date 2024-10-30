@@ -9,7 +9,7 @@ namespace Tinas_Torskfiléer_Backend.Service
 
         ProductDetailsDto RemoveProductQuantity(ProductQuantityUpdateDto productDto);
 
-        ProductDetailsDto AddProduct(ProductRequestDto productDto);
+        ProductDetailsDto AddProduct(AddProductDto productDto);
 
         ProductDetailsDto RemoveProduct(int id);
     }
