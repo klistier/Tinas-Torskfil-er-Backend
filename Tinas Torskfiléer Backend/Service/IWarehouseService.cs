@@ -5,6 +5,8 @@ namespace Tinas_Torskfiléer_Backend.Service
 {
     public interface IWarehouseService
     {
+        List<ProductDetailsDto> GetAllProducts();
+
         ProductDetailsDto AddProductQuantity(ProductQuantityUpdateDto productDto);
 
         ProductDetailsDto RemoveProductQuantity(ProductQuantityUpdateDto productDto);

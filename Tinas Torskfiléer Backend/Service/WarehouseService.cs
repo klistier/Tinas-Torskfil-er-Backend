@@ -8,6 +8,11 @@ namespace Tinas_Torskfiléer_Backend.Service
     {
         private readonly IWarehouseRepo _repo;
 
+        public List<ProductDetailsDto> GetAllProducts()
+        {
+            return _repo.GetAllProducts();
+        }
+
         ProductDetailsDto IWarehouseService.AddProduct(AddProductDto productDto)
         {
             var product = new Product(productDto.name, productDto.description, productDto.stock);
@@ -17,8 +22,7 @@ namespace Tinas_Torskfiléer_Backend.Service
 
         ProductDetailsDto IWarehouseService.AddProductQuantity(ProductQuantityUpdateDto productDto)
         {
-            var product = new ProductQuantityUpdateDto(productDto.id, productDto.quantity);
-            var updatedProduct = _repo.AddProductQuantity(product);
+            var updatedProduct = _repo.AddProductQuantity(productDto);
             return new ProductDetailsDto(updatedProduct.Id, updatedProduct.Name, updatedProduct.Description, updatedProduct.Stock);
         }
 
@@ -30,7 +34,7 @@ namespace Tinas_Torskfiléer_Backend.Service
 
         ProductDetailsDto IWarehouseService.RemoveProductQuantity(ProductQuantityUpdateDto productDto)
         {
-            var updatedProduct = _repo.RemoveProductQuantity(new ProductQuantityUpdateDto(productDto.id, productDto.quantity));
+            var updatedProduct = _repo.RemoveProductQuantity(productDto);
             return new ProductDetailsDto(updatedProduct.Id, updatedProduct.Name, updatedProduct.Description, updatedProduct.Stock);
         }
     }
