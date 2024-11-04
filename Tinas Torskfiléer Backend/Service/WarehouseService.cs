@@ -8,6 +8,11 @@ namespace Tinas_Torskfiléer_Backend.Service
     {
         private readonly IWarehouseRepo _repo;
 
+        public WarehouseService(IWarehouseRepo repo)
+        {
+            _repo = repo;
+        }
+
         public List<ProductDetailsDto> GetAllProducts()
         {
             return _repo.GetAllProducts();

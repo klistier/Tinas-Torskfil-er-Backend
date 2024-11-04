@@ -5,7 +5,12 @@ namespace Tinas_Torskfiléer_Backend.Repository
 {
     public class WarehouseRepo : IWarehouseRepo
     {
-        private readonly ProductContext _db;
+        private readonly WarehouseContext _db;
+
+        public WarehouseRepo(WarehouseContext db)
+        {
+            _db = db;
+        }
 
         public List<ProductDetailsDto> GetAllProducts()
         {
@@ -16,7 +21,7 @@ namespace Tinas_Torskfiléer_Backend.Repository
 
         public Product AddProduct(ProductDetailsDto productDto)
         {
-            Product newProduct = new(productDto.name, productDto.description, productDto.stock);
+            Product newProduct = new(productDto.Name, productDto.Description, productDto.Stock);
             _db.Add(newProduct);
             _db.SaveChanges();
             return newProduct;
@@ -36,24 +41,24 @@ namespace Tinas_Torskfiléer_Backend.Repository
 
         public Product AddProductQuantity(ProductQuantityUpdateDto productDto)
         {
-            var product = _db.TinasProducts.FirstOrDefault(p => p.Id == productDto.id);
+            var product = _db.TinasProducts.FirstOrDefault(p => p.Id == productDto.Id);
             if (product == null)
             {
                 return null;
             }
-            product.Stock += productDto.quantity;
+            product.Stock += productDto.Quantity;
             _db.SaveChanges();
             return product;
         }
 
         public Product RemoveProductQuantity(ProductQuantityUpdateDto productDto)
         {
-            var product = _db.TinasProducts.FirstOrDefault(product => product.Id == productDto.id);
+            var product = _db.TinasProducts.FirstOrDefault(product => product.Id == productDto.Id);
             if (product == null)
             {
                 return null;
             }
-            product.Stock -= productDto.quantity;
+            product.Stock -= productDto.Quantity;
             _db.SaveChanges();
             return product;
         }

@@ -11,6 +11,11 @@ namespace Tinas_Torskfiléer_Backend.Controllers
     {
         private readonly IWarehouseService _db;
 
+        public WarehouseController(IWarehouseService db)
+        {
+            _db = db;
+        }
+
         [HttpGet]
         public ActionResult<List<ProductDetailsDto>> GetAllProducts()
         {
@@ -23,13 +28,13 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProductDetailsDto> AddProduct([FromBody] ProductDetailsDto productDto)
+        public ActionResult<ProductDetailsDto> AddProduct([FromBody] AddProductDto productDto)
         {
             if (productDto == null)
             {
                 return BadRequest();
             }
-            var addedProduct = _db.AddProduct(new AddProductDto(productDto.name, productDto.description, productDto.stock));
+            var addedProduct = _db.AddProduct(new AddProductDto(productDto.Name, productDto.Description, productDto.Stock));
             return addedProduct;
         }
 

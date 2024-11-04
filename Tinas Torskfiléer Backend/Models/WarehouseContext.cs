@@ -2,7 +2,7 @@
 
 namespace Tinas_Torskfiléer_Backend.Models
 {
-    public class ProductContext : DbContext
+    public class WarehouseContext : DbContext
     {
         public DbSet<Product> TinasProducts { get; set; }
 

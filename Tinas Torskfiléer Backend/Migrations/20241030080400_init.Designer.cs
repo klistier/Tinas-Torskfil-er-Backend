@@ -10,7 +10,7 @@ using Tinas_Torskfiléer_Backend.Models;
 
 namespace Tinas_Torskfiléer_Backend.Migrations
 {
-    [DbContext(typeof(ProductContext))]
+    [DbContext(typeof(WarehouseContext))]
     [Migration("20241030080400_init")]
     partial class init
     {

@@ -9,7 +9,7 @@ using Tinas_Torskfiléer_Backend.Models;
 
 namespace Tinas_Torskfiléer_Backend.Migrations
 {
-    [DbContext(typeof(ProductContext))]
+    [DbContext(typeof(WarehouseContext))]
     partial class ProductContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
