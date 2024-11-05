@@ -15,13 +15,13 @@ namespace Tinas_Torskfiléer_Backend.Repository
         public List<ProductDetailsDto> GetAllProducts()
         {
             var productList = _db.TinasProducts.ToList();
-            var productListDto = productList.Select(product => new ProductDetailsDto(product.Id, product.Name, product.Description, product.Stock)).ToList();
+            var productListDto = productList.Select(product => new ProductDetailsDto(product.Id, product.Name, product.Stock)).ToList();
             return productListDto;
         }
 
         public Product AddProduct(ProductDetailsDto productDto)
         {
-            Product newProduct = new(productDto.Name, productDto.Description, productDto.Stock);
+            Product newProduct = new(productDto.Name, productDto.Stock);
             _db.Add(newProduct);
             _db.SaveChanges();
             return newProduct;
