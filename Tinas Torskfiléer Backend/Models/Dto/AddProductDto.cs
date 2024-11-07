@@ -1,5 +1,5 @@
 ﻿namespace Tinas_Torskfiléer_Backend.Models.Dto
 {
-    public record AddProductDto(string Name, string Description, int Stock);
+    public record AddProductDto(string Name, int Stock);
 
 }

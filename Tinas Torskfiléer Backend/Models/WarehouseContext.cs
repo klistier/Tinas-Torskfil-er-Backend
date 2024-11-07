@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Tinas_Torskfiléer_Backend.Models
 {
-    public class WarehouseContext : DbContext
+    public class WarehouseContext : IdentityDbContext<User>
     {
         public DbSet<Product> TinasProducts { get; set; }
 

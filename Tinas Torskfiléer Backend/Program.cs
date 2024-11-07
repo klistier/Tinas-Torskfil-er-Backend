@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Tinas_Torskfiléer_Backend.Models;
 using Tinas_Torskfiléer_Backend.Repository;
 using Tinas_Torskfiléer_Backend.Service;
@@ -26,6 +27,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+
+
+builder.Services.AddIdentityCore<User>()
+    .AddEntityFrameworkStores<WarehouseContext>()
+    .AddApiEndpoints();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -37,6 +46,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors();
 
