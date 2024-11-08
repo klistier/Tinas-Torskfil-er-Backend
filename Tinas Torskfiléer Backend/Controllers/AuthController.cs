@@ -46,10 +46,6 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginDto loginDto)
         {
-            if(loginDto == null)
-            {
-                return BadRequest();
-            }
             _signInManager.AuthenticationScheme = IdentityConstants.ApplicationScheme;
             var result = await _signInManager.PasswordSignInAsync(loginDto.Username, loginDto.Password, false, false);
 

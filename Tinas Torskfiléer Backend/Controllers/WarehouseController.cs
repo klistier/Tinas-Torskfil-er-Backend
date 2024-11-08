@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Tinas_Torskfiléer_Backend.Models.Dto;
 using Tinas_Torskfiléer_Backend.Service;
 
 namespace Tinas_Torskfiléer_Backend.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/products")]
 

@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Win32;
 using Tinas_Torskfiléer_Backend.Models;
 using Tinas_Torskfiléer_Backend.Repository;
 using Tinas_Torskfiléer_Backend.Service;
@@ -7,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<WarehouseContext>();
-WarehouseContext db = new();
+
 
 builder.Services.AddScoped<IWarehouseService, WarehouseService>();
 builder.Services.AddScoped<IWarehouseRepo, WarehouseRepo>();
@@ -21,6 +23,7 @@ builder.Services.AddCors(options =>
         policy.WithMethods("GET", "POST", "PATCH", "DELETE");
         policy.WithOrigins("http://localhost:4200");
         policy.AllowAnyHeader();
+        policy.AllowCredentials();
     });
 });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -33,7 +36,8 @@ builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationSche
 
 builder.Services.AddIdentityCore<User>()
     .AddEntityFrameworkStores<WarehouseContext>()
-    .AddApiEndpoints();
+    .AddSignInManager();
+
 
 var app = builder.Build();
 
@@ -46,9 +50,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseCors();
 
 app.MapControllers();
 
