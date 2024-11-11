@@ -21,7 +21,7 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy.WithMethods("GET", "POST", "PATCH", "DELETE");
-        policy.WithOrigins("http://localhost:4200");
+        policy.WithOrigins(["http://localhost:4200", "http://127.0.0.1:4200"]);
         policy.AllowAnyHeader();
         policy.AllowCredentials();
     });
@@ -51,6 +51,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors();
+
 app.UseAuthentication();
 app.UseAuthorization();
 

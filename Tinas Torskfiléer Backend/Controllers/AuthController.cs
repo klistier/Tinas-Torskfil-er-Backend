@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Tinas_Torskfiléer_Backend.Models;
 using Tinas_Torskfiléer_Backend.Models.Dto;
@@ -57,6 +58,13 @@ namespace Tinas_Torskfiléer_Backend.Controllers
             {
                 return NoContent();
             }
+        }
+
+        [HttpPost("logout")]
+        public async Task<ActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return NoContent();
         }
     }
 }
