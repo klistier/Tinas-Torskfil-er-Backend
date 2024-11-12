@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public string Name { get; set; } = name;
         public int Stock {  get; set; } = stock;
+        public string LowStockWarning { get; set; } = "";
     }
 }

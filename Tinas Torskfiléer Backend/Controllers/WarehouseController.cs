@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Tinas_Torskfiléer_Backend.Models;
 using Tinas_Torskfiléer_Backend.Models.Dto;
 using Tinas_Torskfiléer_Backend.Service;
 
@@ -19,7 +20,7 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<ProductDetailsDto>> GetAllProducts()
+        public ActionResult<List<Product>> GetAllProducts()
         {
             var products = _db.GetAllProducts();
             if (products == null)
@@ -30,7 +31,7 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult<ProductDetailsDto> AddProduct([FromBody] AddProductDto productDto)
+        public ActionResult<Product> AddProduct([FromBody] AddProductDto productDto)
         {
             if (productDto == null)
             {
@@ -41,7 +42,7 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<ProductDetailsDto> RemoveProduct(int id)
+        public ActionResult<Product> RemoveProduct(int id)
         {
             var deletedProduct = _db.RemoveProduct(id);
             if (deletedProduct == null)
@@ -52,7 +53,7 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         }
 
         [HttpPatch("{id}/add-quantity")]
-        public ActionResult<ProductDetailsDto> AddProductQuantity([FromBody] ProductQuantityUpdateDto productDto)
+        public ActionResult<Product> AddProductQuantity([FromBody] ProductQuantityUpdateDto productDto)
         {
             if (productDto == null)
             {
@@ -63,7 +64,7 @@ namespace Tinas_Torskfiléer_Backend.Controllers
         }
 
         [HttpPatch("{id}/remove-quantity")]
-        public ActionResult<ProductDetailsDto> RemoveProductQuantity([FromBody] ProductQuantityUpdateDto productDto)
+        public ActionResult<Product> RemoveProductQuantity([FromBody] ProductQuantityUpdateDto productDto)
         {
             if (productDto == null)
             {

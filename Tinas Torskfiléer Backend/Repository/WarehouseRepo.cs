@@ -12,14 +12,21 @@ namespace Tinas_Torskfiléer_Backend.Repository
             _db = db;
         }
 
-        public List<ProductDetailsDto> GetAllProducts()
+        public List<Product> GetAllProducts()
         {
             var productList = _db.TinasProducts.ToList();
-            var productListDto = productList.Select(product => new ProductDetailsDto(product.Id, product.Name, product.Stock)).ToList();
-            return productListDto;
+
+            foreach (var product in productList)
+            {
+                if (product.Stock < 10)
+                {
+                    product.LowStockWarning = "Få antal enheter kvar på lager!";
+                }
+            }
+            return productList;
         }
 
-        public Product AddProduct(ProductDetailsDto productDto)
+        public Product AddProduct(Product productDto)
         {
             Product newProduct = new(productDto.Name, productDto.Stock);
             _db.Add(newProduct);

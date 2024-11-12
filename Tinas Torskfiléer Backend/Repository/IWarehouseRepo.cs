@@ -5,13 +5,13 @@ namespace Tinas_Torskfiléer_Backend.Repository
 {
     public interface IWarehouseRepo
     {
-        List<ProductDetailsDto> GetAllProducts();
+        List<Product> GetAllProducts();
 
         Product AddProductQuantity(ProductQuantityUpdateDto productDto);
 
         Product RemoveProductQuantity(ProductQuantityUpdateDto productDto);
 
-        Product AddProduct(ProductDetailsDto productDto);
+        Product AddProduct(Product productDto);
 
         Product RemoveProduct(int id);
     }

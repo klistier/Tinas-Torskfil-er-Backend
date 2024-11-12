@@ -13,34 +13,33 @@ namespace Tinas_Torskfiléer_Backend.Service
             _repo = repo;
         }
 
-        public List<ProductDetailsDto> GetAllProducts()
+        public List<Product> GetAllProducts()
         {
             return _repo.GetAllProducts();
         }
 
-        ProductDetailsDto IWarehouseService.AddProduct(AddProductDto productDto)
+        Product IWarehouseService.AddProduct(AddProductDto productDto)
         {
-            var product = new Product(productDto.Name, productDto.Stock);
-            var addedProduct = _repo.AddProduct(new ProductDetailsDto(product.Id, product.Name, product.Stock));
-            return new ProductDetailsDto(addedProduct.Id, addedProduct.Name, addedProduct.Stock);
+            var addedProduct = _repo.AddProduct(new Product(productDto.Name, productDto.Stock));
+            return addedProduct;
         }
 
-        ProductDetailsDto IWarehouseService.AddProductQuantity(ProductQuantityUpdateDto productDto)
+        Product IWarehouseService.AddProductQuantity(ProductQuantityUpdateDto productDto)
         {
             var updatedProduct = _repo.AddProductQuantity(productDto);
-            return new ProductDetailsDto(updatedProduct.Id, updatedProduct.Name, updatedProduct.Stock);
+            return updatedProduct;
         }
 
-        ProductDetailsDto IWarehouseService.RemoveProduct(int id)
+        Product IWarehouseService.RemoveProduct(int id)
         {
             var product = _repo.RemoveProduct(id);
-            return new ProductDetailsDto(product.Id, product.Name, product.Stock);
+            return product;
         }
 
-        ProductDetailsDto IWarehouseService.RemoveProductQuantity(ProductQuantityUpdateDto productDto)
+        Product IWarehouseService.RemoveProductQuantity(ProductQuantityUpdateDto productDto)
         {
             var updatedProduct = _repo.RemoveProductQuantity(productDto);
-            return new ProductDetailsDto(updatedProduct.Id, updatedProduct.Name, updatedProduct.Stock);
+            return updatedProduct;
         }
     }
 }
