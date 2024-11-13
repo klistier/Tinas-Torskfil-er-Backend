@@ -38,7 +38,7 @@ namespace Tinas_Torskfiléer_Backend.Controllers
                 return BadRequest();
             }
             var addedProduct = _db.AddProduct(new AddProductDto(productDto.Name, productDto.Stock));
-            return addedProduct;
+            return Ok(addedProduct);
         }
 
         [HttpDelete("{id}")]

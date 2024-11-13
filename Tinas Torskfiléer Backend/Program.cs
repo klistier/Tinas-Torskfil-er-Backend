@@ -31,7 +31,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAuthorization();
-builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme);
+builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme, opt =>
+{
+    opt.Cookie.SameSite = SameSiteMode.Lax;
+});
 
 
 builder.Services.AddIdentityCore<User>()
